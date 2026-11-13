@@ -8,3 +8,6 @@ __pycache__/
 .DS_Store
 .pytest_cache/
 *.sqlite
+.cache*
+*.cache
+data/so_tay_sinh_vien_2026.pdf

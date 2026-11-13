@@ -1,0 +1,36 @@
+{
+  "corpus_info": {
+    "source_id": "hust-student-handbook-2026",
+    "title": "Sổ tay Sinh viên 2026",
+    "source_path": "data/so_tay_sinh_vien_2026.pdf",
+    "source_url": "https://ctt.hust.edu.vn",
+    "download_page_reference": "https://ctt.hust.edu.vn/DisplayWeb/DisplayBaiViet.aspx?baiviet=42750 (Cổng thông tin Đào tạo và Công tác sinh viên ĐHBK Hà Nội - chuyên mục Sổ tay sinh viên)",
+    "license_or_permission": "The handbook is publicly available on the HUST Student Affairs portal. The source page reviewed does not state a redistribution license. The corpus is used for this academic lab; permission to redistribute the full PDF has not been confirmed.",
+    "language": "vi",
+    "accessed_at": "2026-11-13",
+    "version": "2026",
+    "total_raw_characters": 117465,
+    "total_normalized_characters": 115455
+  },
+  "page_accounting": {
+    "total_physical_pages": 55,
+    "counted_content_pages": 53,
+    "excluded_pages": [
+      1,
+      4
+    ],
+    "exclusion_reason": "Trang 1 là trang bìa chính (35 ký tự thô / 35 ký tự chuẩn hóa); Trang 4 là trang mục lục tóm tắt (293 ký tự thô / 292 ký tự chuẩn hóa). Cả 2 trang đều dưới ngưỡng 300 ký tự.",
+    "valid_page_ranges": "2-3, 5-55",
+    "rule_applied": "Chỉ tính các trang có chứa nội dung điều khoản, thông tin hướng dẫn học vụ, rèn luyện, an sinh hoặc giới thiệu đào tạo thực tế với ít nhất 300 ký tự chữ sau khi chuẩn hóa. Toàn bộ 53 trang nội dung hợp lệ đều đạt từ 615 đến 7.545 ký tự chuẩn hóa (trung bình 2.178 ký tự/trang)."
+  },
+  "metadata_schema": {
+    "filter_field": "category",
+    "allowed_values": [
+      "quy_che_quy_dinh",
+      "diem_ren_luyen",
+      "hoc_bong_an_sinh",
+      "gioi_thieu_vien_khoa"
+    ],
+    "description": "Dùng để lọc phạm vi chủ đề khi truy xuất thông tin cho các câu hỏi chuyên biệt."
+  }
+}

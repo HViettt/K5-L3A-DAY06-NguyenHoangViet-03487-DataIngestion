@@ -1,47 +1,123 @@
 # Day 06 · Data Ingestion Engineering
 
-**Lab cá nhân** · **4 giờ** · **Dữ liệu tự chọn**
+**Học viên:** Nguyễn Hoàng Việt (MSSV: `03487`, Lớp: `L3A`) · **Corpus:** Sổ tay Sinh viên Đại học Bách khoa Hà Nội 2026
 
-Biến tài liệu thành kho tri thức có thể truy xuất cho AI agent, rồi đo xem cách chuẩn bị dữ liệu nào hiệu quả nhất.
+Dự án hiện thực trọn vẹn pipeline Data Ingestion Engineering phục vụ hệ thống RAG: trích xuất, chuẩn hóa, phân tích chiến lược chia chunk, vector hóa bằng Google Gemini Embedding API, lưu trữ trên PostgreSQL/pgvector và đánh giá hiệu năng truy xuất trên bộ benchmark kiểm thử đa khía cạnh.
 
 | 📄 Dữ liệu | 🧩 Chiến lược | 🎯 Benchmark |
 |---|---|---|
-| Tối thiểu **30 trang nội dung** | Tối thiểu **3 cấu hình** | Tối thiểu **20 câu hỏi** |
+| **53 trang nội dung hợp lệ** ($\ge 300$ ký tự) | **3 configurations under comparison** (A, B, C; C reuses B chunks and adds a metadata filter) | **20 câu hỏi** (15 dev / 5 test) |
 
 ## Bắt đầu nhanh
 
-Dùng [starter PostgreSQL + pgvector](starter/README.md) để dựng database và hoàn thiện các hàm TODO, hoặc tự chọn vector store tương đương. Starter chỉ là khung: **bạn tự hiện thực pipeline và benchmark**.
+Hệ thống đã được hiện thực hoàn chỉnh và sẵn sàng chạy tái hiện:
+1. Khởi động vector store: `cd starter && docker compose up -d`
+2. Cài đặt thư viện: `pip install -r starter/requirements.txt`
+3. Cấu hình khóa `GEMINI_API_KEY` trong `starter/.env`
+4. Chạy toàn bộ pipeline & benchmark: `python -m starter.src.run`
 
-## 1. Xây pipeline
+## 1. Kiến trúc Pipeline
 
 ![Đọc tài liệu, chuẩn hóa, chia chunk, tạo vector, lưu và kiểm tra](assets/ingestion-pipeline.svg)
 
-Chọn tài liệu được phép sử dụng; giữ **ID tài liệu, nguồn, trang/vị trí** và metadata phù hợp. Dùng embedding model thật qua API hoặc chạy local; lưu và truy xuất bằng pgvector, Qdrant, Chroma hoặc một store tương đương.
+- **Corpus & Tiền xử lý:** Trích xuất 53 trang nội dung hợp lệ từ Sổ tay Sinh viên HUST 2026 (115.455 ký tự chuẩn hóa), tự động lọc bỏ các trang bìa/mục lục dưới 300 ký tự, chuẩn hóa Unicode NFKC, xử lý ngắt từ và bảo toàn ranh giới đoạn.
+- **Embedding & Storage:** Tích hợp mô hình `gemini-embedding-001` (768 chiều) với cơ chế disk cache thông minh và lưu trữ trong bảng `chunks` của PostgreSQL 16 + pgvector (`vector_cosine_ops`).
 
-## 2. So sánh và đánh giá
+## 2. Chiến lược Chunking & Benchmark
 
 ![Ba chiến lược được đánh giá trên cùng corpus và benchmark dev/test](assets/benchmark-workflow.svg)
 
-Dùng cùng dữ liệu, model và câu hỏi cho cả ba cấu hình. Tách **15 câu dev / 5 câu test** trước khi chạy; chọn cấu hình trên dev, rồi đánh giá test sau khi cố định. Mỗi câu hỏi cần có đoạn bằng chứng và trang nguồn; thiết kế bộ câu hỏi và đánh giá theo [BENCHMARK.md](BENCHMARK.md).
+Hệ thống triển khai và so sánh đối chứng 3 chiến lược:
+- **Strategy A (Baseline):** Fixed-size window (`chunk_size = 500`, `overlap = 50`), không lọc metadata (sinh ra 279 chunks).
+- **Strategy B (Structure-aware):** Paragraph chunking theo ranh giới đoạn văn tự nhiên `\n\n` (`max_size = 800`), không lọc metadata (sinh ra 184 chunks).
+- **Strategy C (Paragraph + Filter):** Sử dụng chính xác 184 chunks và vectors của Strategy B, kích hoạt bộ lọc JSONB metadata trong PostgreSQL (`@> '{"category": ...}'::jsonb`) cho các câu hỏi chuyên biệt.
 
-Đánh giá theo năm khía cạnh: **độ chính xác truy xuất**, **tính mạch lạc của chunk**, **tính hữu dụng của metadata**, **chất lượng grounding** và **tác động của chiến lược dữ liệu**. Giải thích lựa chọn bằng kết quả, ví dụ lỗi và các đánh đổi.
+Bộ benchmark gồm **20 câu hỏi** (15 câu dev / 5 câu test cố định) đánh giá qua 5 tiêu chí: **Độ chính xác truy xuất (Hit@1, Evidence Hit@3)**, **Tính mạch lạc (Coherence)**, **Tính hữu dụng của Metadata (Metadata Audit & Domain Isolation)**, **Chất lượng Grounding** và **Tác động của chiến lược dữ liệu**.
 
-## 3. Chuẩn bị bài nộp
+## 3. Cấu trúc bài nộp
 
-1. Chạy pipeline và lưu cấu hình, kết quả top-3, trace cùng nhãn đánh giá thủ công.
-2. Điền [thông tin học viên](STUDENT.md), [nhật ký thí nghiệm](artifacts/experiment_log.csv) và bản sao [mẫu báo cáo cá nhân](report/individual/MSSV_HoTen.md).
-3. Kiểm tra mã nguồn, cách chạy, manifest dữ liệu và checklist trong [SUBMISSION.md](SUBMISSION.md).
+- Toàn bộ traces top-3, kết quả benchmark tổng hợp và nhật ký audit thủ công được lưu tại [results/](results/).
+- Thông tin học viên tại [STUDENT.md](STUDENT.md) và nhật ký thí nghiệm tại [artifacts/experiment_log.csv](artifacts/experiment_log.csv).
+- Báo cáo phân tích chuyên sâu tại [report/individual/03487_NguyenHoangViet.md](report/individual/03487_NguyenHoangViet.md).
 
-## Tài liệu hướng dẫn
+## Tài liệu tham khảo của lab
 
-| Bạn cần tìm | Tài liệu |
+| Tài liệu | Mô tả |
 |---|---|
-| Setup baseline PostgreSQL + pgvector | [starter/README.md](starter/README.md) |
-| Các bước làm và cách tính chỉ số | [GUIDE.md](GUIDE.md) |
-| Tiến độ trong 4 giờ | [CHECKPOINTS.md](CHECKPOINTS.md) |
-| Năm tiêu chí benchmark và bộ câu hỏi | [BENCHMARK.md](BENCHMARK.md) |
-| Tiêu chí chấm điểm | [RUBRIC.md](RUBRIC.md) |
-| Quy tắc sử dụng dữ liệu, AI và API | [RULES.md](RULES.md) |
-| Cách nộp bài | [SUBMISSION.md](SUBMISSION.md) |
+| [starter/README.md](starter/README.md) | Chi tiết triển khai mã nguồn và database pgvector |
+| [GUIDE.md](GUIDE.md) | Các bước làm và cách tính chỉ số |
+| [CHECKPOINTS.md](CHECKPOINTS.md) | Tiến độ trong 4 giờ |
+| [BENCHMARK.md](BENCHMARK.md) | Năm tiêu chí benchmark và bộ câu hỏi |
+| [RUBRIC.md](RUBRIC.md) | Tiêu chí chấm điểm |
+| [RULES.md](RULES.md) | Quy tắc sử dụng dữ liệu, AI và API |
+| [SUBMISSION.md](SUBMISSION.md) | Checklist nộp bài |
 
-[data/format-example.json](data/format-example.json) chỉ minh họa định dạng, không phải corpus đủ điều kiện. Phần xử lý và benchmark do bạn tự hiện thực; không bắt buộc xây chatbot.
+---
+
+## Hướng dẫn tái hiện thí nghiệm (Reproduction Guide)
+
+### 1. Thông tin sinh viên & Báo cáo
+- **Học viên:** Nguyễn Hoàng Việt (MSSV: `03487`, Lớp: `L3A`)
+- **Corpus:** Tải PDF asset từ GitHub Release `day6-submission` và lưu thành `data/so_tay_sinh_vien_2026.pdf` trước khi chạy pipeline (55 trang vật lý; 53 trang nội dung hợp lệ; 115.455 ký tự chuẩn hóa).
+- **Manifest:** [data/manifest.json](data/manifest.json)
+- **Benchmark:** [benchmark/questions.json](benchmark/questions.json) (20 câu: 15 dev / 5 test)
+- **Báo cáo cá nhân chi tiết:** [report/individual/03487_NguyenHoangViet.md](report/individual/03487_NguyenHoangViet.md)
+- **Traces & Kết quả:** [results/](results/)
+
+### 2. Yêu cầu môi trường & Cài đặt
+
+#### a. Khởi động PostgreSQL + pgvector
+```bash
+cd starter
+docker compose up -d
+```
+Database chạy tại `localhost:55433` (user: `day6`, pass: `day6_local_only`, db: `day6_lab`).
+
+#### b. Cài đặt thư viện Python
+```bash
+pip install -r starter/requirements.txt
+```
+*(Yêu cầu Python >= 3.10, bao gồm `psycopg[binary]`, `pgvector`, `pypdf`, `google-genai`, `python-dotenv`).*
+
+#### c. Thiết lập biến môi trường
+Tạo file `starter/.env` từ mẫu:
+```bash
+cp starter/.env.example starter/.env
+```
+Cấu hình trong `starter/.env`:
+```env
+# Chuỗi kết nối PostgreSQL chuẩn (khớp với docker-compose.yml)
+DATABASE_URL=postgresql://day6:day6_local_only@127.0.0.1:55433/day6_lab
+
+# Khóa API và mô hình embedding
+GEMINI_API_KEY=your_gemini_api_key_here
+EMBEDDING_MODEL=gemini-embedding-001
+EMBEDDING_DIM=768
+```
+*(Hệ thống cũng hỗ trợ tự ghép nối từ các biến riêng lẻ `POSTGRES_HOST`, `POSTGRES_PORT`, `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` nếu `DATABASE_URL` không được cung cấp).*
+
+#### d. Kiểm tra kết nối
+```bash
+python starter/scripts/check_setup.py
+```
+
+### 3. Chạy pipeline Ingestion & Benchmark
+
+Chạy toàn bộ pipeline từ thư mục gốc của repository (thực hiện nạp dữ liệu, chunking cho 3 chiến lược, tính embedding, lưu vào Postgres và chạy đánh giá trên 20 câu benchmark):
+
+```bash
+# Cách 1 (Khuyến nghị): Chạy dưới dạng module
+python -m starter.src.run
+
+# Cách 2: Chạy trực tiếp script
+python starter/src/run.py
+```
+
+### 4. Kết quả đầu ra
+- `results/traces_strategy_a.json`: Trace top-3 retrieval cho Strategy A (Fixed-size 500/50).
+- `results/traces_strategy_b.json`: Trace top-3 retrieval cho Strategy B (Paragraph chunking max 800).
+- `results/traces_strategy_c.json`: Trace top-3 retrieval cho Strategy C (Paragraph + SQL metadata filter).
+- `results/benchmark_summary.json`: Bảng tổng hợp Hit@1, Hit@3 trên tập Dev và Test.
+- `results/manual_audit.json`: Nhật ký chấm điểm thủ công 5 khía cạnh (Coherence, Grounding, Metadata).
+- `artifacts/experiment_log.csv`: Nhật ký các lần chạy thử nghiệm.
+

@@ -1,65 +1,82 @@
-# Starter · PostgreSQL + pgvector
+# Starter · PostgreSQL + pgvector (Giải pháp Lab đã hoàn thiện)
 
-Bộ khởi động **tùy chọn** cho lab cá nhân. Docker Compose tạo PostgreSQL + pgvector local; các file trong `src/` là **khung pseudocode có TODO**, chưa đọc tài liệu, tạo embedding, lưu vector hay chạy benchmark. Bạn cần tự hiện thực. Vẫn có thể chọn Qdrant, Chroma hoặc vector store tương đương theo [GUIDE.md](../GUIDE.md).
+Dự án Data Ingestion Engineering cá nhân của học viên **Nguyễn Hoàng Việt (MSSV: 03487, Lớp L3A)**. Bộ code trong thư mục `src/` đã được hoàn thiện 100% để chạy ingestion pipeline, lưu trữ vector bền vững trên PostgreSQL + pgvector và thực thi benchmark đánh giá 3 chiến lược A, B, C.
 
-## Cấu trúc
+## Cấu trúc thư mục
 
 ```text
 starter/
-├── docker-compose.yml     # PostgreSQL 16 + pgvector, chỉ mở cổng local
-├── init.sql               # bật extension khi tạo database mới
-├── requirements.txt       # psycopg, pypdf và python-dotenv
-├── .env.example           # cấu hình mẫu; copy thành .env
-├── scripts/check_setup.py # kiểm tra kết nối và extension (đã chạy được)
-├── src/
-│   ├── models.py          # cấu trúc dữ liệu mẫu
-│   ├── ingestion.py       # TODO: đọc / chuẩn hóa tài liệu
-│   ├── chunking.py        # TODO: chia chunk
-│   ├── embeddings.py      # TODO: chọn model API hoặc local
-│   ├── store.py           # TODO: lưu vector, metadata và filter
-│   ├── evaluation.py      # TODO: chấm truy xuất, lưu trace
-│   └── run.py             # TODO: kết nối các bước thành pipeline
-├── data/                  # bạn tự chuẩn bị corpus được phép sử dụng
-└── results/               # lưu kết quả của bạn
+├── docker-compose.yml        # PostgreSQL 16 + pgvector (127.0.0.1:55433)
+├── init.sql                  # Script kích hoạt extension vector
+├── requirements.txt          # psycopg, pgvector, pypdf, python-dotenv, google-genai
+├── .env.example              # Cấu hình biến môi trường mẫu
+├── scripts/
+│   ├── check_setup.py        # Kiểm tra kết nối database và pgvector extension
+│   └── create_benchmark.py   # Script kiểm tra và trích xuất 20 câu hỏi benchmark
+└── src/
+    ├── models.py             # Data class DocumentPage, Chunk
+    ├── ingestion.py          # Trích xuất PDF và chuẩn hóa text (ngưỡng >= 300 ký tự)
+    ├── chunking.py           # Chia chunk cố định (A: 500/50) và theo đoạn văn (B/C: max 800)
+    ├── embeddings.py         # Google Gemini gemini-embedding-001 (768 dims) kèm local caching
+    ├── store.py              # PostgreSQL + pgvector store, cosine search và metadata GIN index
+    ├── evaluation.py         # Đánh giá Hit@1, Evidence Hit@3 và tổng hợp chỉ số
+    └── run.py                # Pipeline điều phối toàn bộ quá trình nạp và đánh giá
 ```
 
-## 1. Cài và kiểm tra database
+## 1. Cài đặt và khởi động Database
 
-Cần Docker Desktop hoặc Docker Engine + Compose, Python **3.11–3.14**, và mạng để tải image/dependencies lần đầu. Các lệnh sau chạy từ thư mục `starter/`:
+Yêu cầu Docker Desktop hoặc Docker Engine và Python >= 3.10.
 
 ```bash
 cd starter
-python3 -m venv .venv
-```
+# Cài đặt toàn bộ dependencies (bao gồm psycopg, pgvector, pypdf, google-genai, python-dotenv)
+pip install -r requirements.txt
 
-Kích hoạt `.venv`: macOS/Linux dùng `source .venv/bin/activate`; Windows PowerShell dùng `.venv\Scripts\Activate.ps1`. Sau đó:
+# Khởi động PostgreSQL + pgvector container
+docker compose up -d --wait
 
-```bash
-python -m pip install -r requirements.txt
-# macOS/Linux: cp .env.example .env
-# Windows PowerShell: Copy-Item .env.example .env
-docker compose -p day6_student_starter up -d --wait
+# Kiểm tra kết nối database
 python scripts/check_setup.py
 ```
 
-Kỳ vọng: hiện tên database, phiên bản PostgreSQL và pgvector, sau đó `Setup OK`. Đây **chỉ là kiểm tra hạ tầng**, không phải kết quả benchmark. Docker dùng cổng `127.0.0.1:55433` và mật khẩu cố định **chỉ dùng local cho lab**; nếu cổng bận, sửa đồng thời port trong `docker-compose.yml` và `DATABASE_URL` trong `.env`. `init.sql` chỉ chạy khi volume mới được tạo; nếu database sẵn có chưa bật extension, xem log Docker và kiểm tra cấu hình thay vì xóa volume chứa dữ liệu.
+Kỳ vọng: Hiện thông tin `Database: day6_lab | PostgreSQL: 16.x | pgvector: 0.8.7 | Setup OK`.
+Container chạy tại `127.0.0.1:55433`, thông tin đăng nhập: `user: day6`, `pass: day6_local_only`, `db: day6_lab`.
 
-Dừng container nhưng giữ dữ liệu:
+## 2. Cấu hình biến môi trường
 
+Tạo file `.env` từ mẫu:
 ```bash
-docker compose -p day6_student_starter stop
+cp .env.example .env
 ```
 
-## 2. Chọn embedding model
+Điền `GEMINI_API_KEY`:
+```env
+DATABASE_URL=postgresql://day6:day6_local_only@127.0.0.1:55433/day6_lab
+GEMINI_API_KEY=your_gemini_api_key_here
+EMBEDDING_MODEL=gemini-embedding-001
+EMBEDDING_DIM=768
+```
 
-Điền key tương ứng trong `.env` nếu dùng OpenRouter, OpenAI hoặc Gemini; **không commit `.env`**. Model local không cần API key. `requirements.txt` chỉ có dependencies cơ bản: tự cài SDK hoặc thư viện local phù hợp với model bạn chọn và ghi lại version/lệnh cài trong báo cáo. Ghi tên model và số chiều; dùng cùng model cho toàn bộ chiến lược và vector query tương thích vector document.
+## 3. Chạy Pipeline Ingestion & Benchmark
 
-## 3. Hoàn thiện pipeline
+Bạn có thể chạy pipeline từ thư mục gốc của repository hoặc từ thư mục `starter/`:
 
-1. Đặt corpus vào `data/` hoặc cung cấp manifest/hướng dẫn truy cập. Đọc [GUIDE.md](../GUIDE.md) về **30 trang nội dung**, quyền dữ liệu và metadata.
-2. Hoàn thiện từng hàm TODO trong `src/`. Lưu ID tài liệu, nguồn, trang/vị trí và ít nhất một trường filter có ích.
-3. Xây ít nhất ba cấu hình; ví dụ A fixed-size, B theo đoạn, C như B nhưng có filter. Cần cùng corpus, model và benchmark; nạp lại không nhân đôi và xử lý chunk cũ khi dữ liệu đổi.
-4. Tự viết ít nhất 20 câu hỏi kèm evidence, tách dev/test trước khi thử theo [BENCHMARK.md](../BENCHMARK.md). Lưu trace top-3 và báo cáo đủ năm tiêu chí.
-5. Sau khi hoàn thiện, chạy `python -m src.run` từ thư mục `starter/`. Trước khi làm TODO, lệnh này **chủ động báo `NotImplementedError`**.
+```bash
+# Cách 1 (Khuyến nghị): Chạy từ thư mục gốc repo
+python -m starter.src.run
+# hoặc
+python starter/src/run.py
 
-Lưu code, cấu hình, kết quả và lệnh chạy để người chấm tái lập; không commit key, dữ liệu mật hoặc dữ liệu không có quyền chia sẻ.
+# Cách 2: Chạy từ trong thư mục starter/
+cd starter
+python -m src.run
+# hoặc
+python src/run.py
+```
+
+### Các bước pipeline thực thi tự động:
+1. Đọc và chuẩn hóa 53 trang nội dung hợp lệ từ `data/so_tay_sinh_vien_2026.pdf` (loại bỏ 2 trang < 300 ký tự).
+2. Tạo 279 chunks cho Strategy A (Fixed 500/50) và 184 chunks cho Strategy B & C (Paragraph max 800).
+3. Tính embedding vector 768 chiều với `gemini-embedding-001` và nạp vào database pgvector có index.
+4. Đánh giá truy xuất top-3 trên 20 câu hỏi benchmark (15 dev, 5 test).
+5. Xuất traces chi tiết và tóm tắt kết quả ra thư mục `results/` cùng `artifacts/experiment_log.csv`.

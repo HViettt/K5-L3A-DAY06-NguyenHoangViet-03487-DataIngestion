@@ -1,0 +1,565 @@
+{
+  "coherence_audit": {
+    "scale": "0 = bị cắt giữa ý/mất chủ thể không hiểu; 1 = hiểu một phần/thiếu ngữ cảnh; 2 = trọn vẹn, tự hiểu được độc lập",
+    "sample_selection": "10 vị trí nguồn cố định theo thứ tự trang: [2, 5, 6, 7, 10, 11, 12, 17, 21, 22]",
+    "evaluations": [
+      {
+        "position": 1,
+        "page": 2,
+        "topic": "Lịch sử thành lập ĐHBK Hà Nội",
+        "strategy_a": {
+          "score": 1,
+          "chunk_id": "hust-student-handbook-2026_p2_fix_0",
+          "reason": "Bị cắt cụt từ cuối: '...Cách mạng tháng Mười Nga vĩ đại, trư'"
+        },
+        "strategy_b": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p2_para_0",
+          "reason": "Kết thúc trọn vẹn câu: '...thành lập trường Đại học Xây dựng và trường Đại học Mỏ - Địa chất.'"
+        },
+        "strategy_c": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p2_para_0",
+          "reason": "Tái sử dụng chunk của Strategy B; trọn vẹn câu kết thúc lịch sử thành lập."
+        }
+      },
+      {
+        "position": 2,
+        "page": 5,
+        "topic": "Quy định tác phong sinh viên",
+        "strategy_a": {
+          "score": 1,
+          "chunk_id": "hust-student-handbook-2026_p5_fix_0",
+          "reason": "Bị cắt cụt: '...khuôn viên của trường. Mọ'"
+        },
+        "strategy_b": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p5_para_0",
+          "reason": "Trọn vẹn câu kết thúc điều khoản quy định trang phục và tác phong."
+        },
+        "strategy_c": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p5_para_0",
+          "reason": "Tái sử dụng chunk của Strategy B; giữ nguyên vẹn ngữ cảnh quy định sinh viên."
+        }
+      },
+      {
+        "position": 3,
+        "page": 6,
+        "topic": "Các hành vi bị nghiêm cấm",
+        "strategy_a": {
+          "score": 1,
+          "chunk_id": "hust-student-handbook-2026_p6_fix_0",
+          "reason": "Bị cắt lửng điều khoản cấm hút thuốc."
+        },
+        "strategy_b": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p6_para_0",
+          "reason": "Trọn vẹn toàn bộ danh mục các hành vi nghiêm cấm."
+        },
+        "strategy_c": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p6_para_0",
+          "reason": "Tái sử dụng chunk của Strategy B; trọn vẹn danh mục hành vi bị cấm."
+        }
+      },
+      {
+        "position": 4,
+        "page": 7,
+        "topic": "Mô hình đào tạo tích hợp 4+1,5",
+        "strategy_a": {
+          "score": 1,
+          "chunk_id": "hust-student-handbook-2026_p7_fix_0",
+          "reason": "Cắt cụt thông tin xét tuyển cuối trang."
+        },
+        "strategy_b": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p7_para_0",
+          "reason": "Giữ nguyên khối cấu trúc mô hình đào tạo cử nhân - kỹ sư/thạc sĩ."
+        },
+        "strategy_c": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p7_para_0",
+          "reason": "Tái sử dụng chunk của Strategy B; khối mô hình đào tạo hoàn chỉnh."
+        }
+      },
+      {
+        "position": 5,
+        "page": 10,
+        "topic": "Quy trình đánh giá điểm rèn luyện",
+        "strategy_a": {
+          "score": 0,
+          "chunk_id": "hust-student-handbook-2026_p10_fix_0",
+          "reason": "Bị cắt cụt giữa dòng: 'Trách nhiệm tham gia c', mất hoàn toàn ngữ nghĩa chủ ngữ."
+        },
+        "strategy_b": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p10_para_0",
+          "reason": "Đoạn văn trọn vẹn quy trình đánh giá kết quả rèn luyện."
+        },
+        "strategy_c": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p10_para_0",
+          "reason": "Tái sử dụng chunk của Strategy B; bảo toàn toàn bộ quy trình đánh giá rèn luyện."
+        }
+      },
+      {
+        "position": 6,
+        "page": 11,
+        "topic": "Tiêu chí đánh giá rèn luyện",
+        "strategy_a": {
+          "score": 1,
+          "chunk_id": "hust-student-handbook-2026_p11_fix_0",
+          "reason": "Bị cắt ngang giữa một mục tiêu chí điểm."
+        },
+        "strategy_b": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p11_para_0",
+          "reason": "Gom nhóm tiêu chí rèn luyện đầy đủ, ranh giới đoạn rõ ràng."
+        },
+        "strategy_c": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p11_para_0",
+          "reason": "Tái sử dụng chunk của Strategy B; tiêu chí và khung điểm rèn luyện đầy đủ."
+        }
+      },
+      {
+        "position": 7,
+        "page": 12,
+        "topic": "4 hình thức xử lý kỷ luật sinh viên",
+        "strategy_a": {
+          "score": 1,
+          "chunk_id": "hust-student-handbook-2026_p12_fix_0",
+          "reason": "Cắt cụt từ 'của cơ sở gi'."
+        },
+        "strategy_b": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p12_para_0",
+          "reason": "Liệt kê trọn vẹn 4 hình thức kỷ luật sinh viên theo Thông tư 40."
+        },
+        "strategy_c": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p12_para_0",
+          "reason": "Tái sử dụng chunk của Strategy B; trọn vẹn 4 hình thức kỷ luật."
+        }
+      },
+      {
+        "position": 8,
+        "page": 17,
+        "topic": "Học bổng Trần Đại Nghĩa",
+        "strategy_a": {
+          "score": 1,
+          "chunk_id": "hust-student-handbook-2026_p17_fix_0",
+          "reason": "Cắt dở tiêu đề nguyên tắc xét cấp học bổng."
+        },
+        "strategy_b": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p17_para_0",
+          "reason": "Trọn vẹn ý nghĩa mục đích và đối tượng xét cấp học bổng."
+        },
+        "strategy_c": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p17_para_0",
+          "reason": "Tái sử dụng chunk của Strategy B; trọn vẹn mục đích và tiêu chuẩn học bổng."
+        }
+      },
+      {
+        "position": 9,
+        "page": 21,
+        "topic": "Dự án An sinh",
+        "strategy_a": {
+          "score": 1,
+          "chunk_id": "hust-student-handbook-2026_p21_fix_0",
+          "reason": "Cắt lửng lơ: 'Hệ thống sẽ tự động'."
+        },
+        "strategy_b": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p21_para_0",
+          "reason": "Trọn vẹn thông điệp và cách thức vận hành dự án gia sư an sinh."
+        },
+        "strategy_c": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p21_para_0",
+          "reason": "Tái sử dụng chunk của Strategy B; thông điệp dự án hoàn chỉnh."
+        }
+      },
+      {
+        "position": 10,
+        "page": 22,
+        "topic": "Hệ thống trực tuyến eHUST",
+        "strategy_a": {
+          "score": 0,
+          "chunk_id": "hust-student-handbook-2026_p22_fix_0",
+          "reason": "Cắt cụt từ 'sử dụng hiệu qu', câu dở dang không đủ nghĩa."
+        },
+        "strategy_b": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p22_para_0",
+          "reason": "Trọn vẹn câu và danh mục tính năng của app eHUST."
+        },
+        "strategy_c": {
+          "score": 2,
+          "chunk_id": "hust-student-handbook-2026_p22_para_0",
+          "reason": "Tái sử dụng chunk của Strategy B; hệ thống eHUST trọn vẹn tính năng."
+        }
+      }
+    ],
+    "averages": {
+      "strategy_a": 0.8,
+      "strategy_b": 2.0,
+      "strategy_c": 2.0
+    }
+  },
+  "grounding_audit_test": {
+    "scale": "0 = không có bằng chứng; 1 = có nhưng thiếu điều kiện/ngữ cảnh; 2 = đủ bằng chứng trả lời và truy nguồn",
+    "test_queries": [
+      {
+        "id": "q16",
+        "question": "Khoa Ngoại ngữ có tổng cộng bao nhiêu cán bộ và có bao nhiêu Tiến sĩ?",
+        "gold_page": 35,
+        "strategy_a": {
+          "score": 2,
+          "retrieved_chunk_id": "hust-student-handbook-2026_p35_fix_0",
+          "evidence_found_at_rank": 1,
+          "reason": "Top-1 chunk chứa nguyên văn số liệu nhân sự: '96 cán bộ, trong đó có 03 Tiến sỹ, 08 Nghiên cứu sinh, 62 Thạc sỹ, 02 giáo viên nước ngoài'. Đủ để trả lời chính xác và dẫn nguồn Trang 35."
+        },
+        "strategy_b": {
+          "score": 2,
+          "retrieved_chunk_id": "hust-student-handbook-2026_p35_para_0",
+          "evidence_found_at_rank": 1,
+          "reason": "Top-1 chunk chứa đoạn văn trọn vẹn giới thiệu cán bộ Khoa Ngoại ngữ với đầy đủ 96 cán bộ và 03 Tiến sỹ. Đủ căn cứ trả lời độc lập."
+        },
+        "strategy_c": {
+          "score": 2,
+          "retrieved_chunk_id": "hust-student-handbook-2026_p35_para_0",
+          "evidence_found_at_rank": 1,
+          "reason": "Top-1 chunk tương tự Strategy B (câu không có filter chạy không lọc). Chứa đầy đủ bằng chứng và nguồn xác thực."
+        }
+      },
+      {
+        "id": "q17",
+        "question": "Khi lái xe cơ giới như xe máy hoặc ô tô vào khuôn viên trường, sinh viên phải tuân thủ điều gì?",
+        "gold_page": 5,
+        "strategy_a": {
+          "score": 2,
+          "retrieved_chunk_id": "hust-student-handbook-2026_p5_fix_0",
+          "evidence_found_at_rank": 1,
+          "reason": "Top-1 chunk chứa đầy đủ điều kiện quy định: 'phải lưu ý giảm tốc độ, thận trọng quan sát xung quanh và gửi xe đúng nơi quy định'."
+        },
+        "strategy_b": {
+          "score": 2,
+          "retrieved_chunk_id": "hust-student-handbook-2026_p5_para_0",
+          "evidence_found_at_rank": 1,
+          "reason": "Top-1 chunk trọn vẹn đoạn quy chế giao thông nội bộ trường, đầy đủ nghĩa vụ giảm tốc độ và gửi xe đúng nơi quy định."
+        },
+        "strategy_c": {
+          "score": 2,
+          "retrieved_chunk_id": "hust-student-handbook-2026_p5_para_0",
+          "evidence_found_at_rank": 1,
+          "reason": "Top-1 chunk tương tự Strategy B. Đầy đủ dữ kiện và điều kiện để mô hình RAG tổng hợp câu trả lời."
+        }
+      },
+      {
+        "id": "q18",
+        "question": "Mức điểm rèn luyện trong khoảng nào thì được phân loại rèn luyện đạt loại Xuất sắc và loại Tốt?",
+        "gold_page": 10,
+        "strategy_a": {
+          "score": 2,
+          "retrieved_chunk_id": "hust-student-handbook-2026_p10_fix_2",
+          "evidence_found_at_rank": 1,
+          "reason": "Top-1 chunk chứa rõ ràng khung thang điểm rèn luyện: 'Từ 90 điểm đến 100 điểm: loại xuất sắc; - Từ 80 điểm đến 89 điểm: loại tốt'."
+        },
+        "strategy_b": {
+          "score": 2,
+          "retrieved_chunk_id": "hust-student-handbook-2026_p10_para_1",
+          "evidence_found_at_rank": 1,
+          "reason": "Top-1 chunk bao gồm bảng phân loại rèn luyện đầy đủ các mức từ Xuất sắc đến Yếu. Cung cấp trọn vẹn bằng chứng."
+        },
+        "strategy_c": {
+          "score": 2,
+          "retrieved_chunk_id": "hust-student-handbook-2026_p10_para_1",
+          "evidence_found_at_rank": 1,
+          "reason": "Top-1 chunk tương tự Strategy B. Cung cấp dữ kiện vững chắc để grounding câu trả lời."
+        }
+      },
+      {
+        "id": "q19",
+        "question": "Trong mục học bổng và an sinh xã hội, Học bổng Trần Đại Nghĩa được xét và cấp với tần suất như thế nào?",
+        "gold_page": 17,
+        "strategy_a": {
+          "score": 2,
+          "retrieved_chunk_id": "hust-student-handbook-2026_p17_fix_1",
+          "evidence_found_at_rank": 1,
+          "reason": "Top-1 chunk chứa trực tiếp câu quy định: 'Học bổng Trần Đại Nghĩa được xét, cấp theo học kỳ, mỗi học kỳ xét 01 lần vào đầu học kỳ'."
+        },
+        "strategy_b": {
+          "score": 2,
+          "retrieved_chunk_id": "hust-student-handbook-2026_p17_para_2",
+          "evidence_found_at_rank": 2,
+          "reason": "Top-1 là đoạn giới thiệu chung, nhưng Top-2 chunk (vẫn trong Top-3 retrieved) chứa chính xác nguyên văn quy định xét cấp theo học kỳ 1 lần vào đầu kỳ. Đủ dữ kiện hỗ trợ câu trả lời."
+        },
+        "strategy_c": {
+          "score": 2,
+          "retrieved_chunk_id": "hust-student-handbook-2026_p17_para_2",
+          "evidence_found_at_rank": 2,
+          "reason": "Áp dụng SQL filter category='hoc_bong_an_sinh'. Top-2 chunk chứa toàn văn quy định nguyên tắc xét cấp. 100% Top-3 chunks đều thuộc danh mục học bổng an sinh, grounding an toàn và không bị nhiễu."
+        }
+      },
+      {
+        "id": "q20",
+        "question": "Việc cấp lại sổ đoàn, chứng nhận đoàn viên và ký thanh toán ra trường cho sinh viên được thực hiện tại đâu?",
+        "gold_page": 27,
+        "strategy_a": {
+          "score": 2,
+          "retrieved_chunk_id": "hust-student-handbook-2026_p27_fix_0",
+          "evidence_found_at_rank": 1,
+          "reason": "Top-1 chunk chứa chính xác địa điểm thực hiện thủ tục: 'tại Văn phòng Đoàn Đại học'."
+        },
+        "strategy_b": {
+          "score": 2,
+          "retrieved_chunk_id": "hust-student-handbook-2026_p27_para_0",
+          "evidence_found_at_rank": 1,
+          "reason": "Top-1 chunk chứa toàn bộ danh mục nhiệm vụ hỗ trợ đoàn viên và chỉ rõ Văn phòng Đoàn Đại học là nơi tiếp nhận."
+        },
+        "strategy_c": {
+          "score": 2,
+          "retrieved_chunk_id": "hust-student-handbook-2026_p27_para_0",
+          "evidence_found_at_rank": 1,
+          "reason": "Top-1 chunk tương tự Strategy B. Đầy đủ bằng chứng xác thực để kết luận địa điểm."
+        }
+      }
+    ],
+    "averages": {
+      "strategy_a": 2.0,
+      "strategy_b": 2.0,
+      "strategy_c": 2.0
+    }
+  },
+  "metadata_audit": {
+    "scale": "Kiểm tra 15 bản ghi chunk ngẫu nhiên từ database để đảm bảo metadata (document_id, source, page, category) đúng và đủ để truy vết",
+    "verified_records_count": 15,
+    "accuracy_rate": "15/15 (100%)",
+    "sampling_distribution": {
+      "strategy_a_count": 5,
+      "strategy_b_count": 5,
+      "strategy_c_count": 5,
+      "methodology": "Purposefully selected stratified sample: 5 chunks for each of A, B, and C, covering all 4 categories. C reuses the same index/chunks as B, so C samples are checked against strategy_b database records. text_preview values are verbatim prefixes of the stored chunk text."
+    },
+    "verified_samples": [
+      {
+        "strategy": "A",
+        "chunk_id": "hust-student-handbook-2026_p5_fix_0",
+        "page": 5,
+        "category": "quy_che_quy_dinh",
+        "source": "data/so_tay_sinh_vien_2026.pdf",
+        "document_id": "hust-student-handbook-2026",
+        "text_preview": "8 9\n1\nQUY ĐỊNH\nSINH VIÊN CẦN LƯU Ý\nSinh viên đến trường phải mang theo thẻ sinh viên, trang phục\ngọn gàng phù hợp với văn hóa Việt Nam và sự nghiêm túc của\ntrường đại học.\nTrường hợp đi xe đạp, xe máy, ô tô vào trường phải lưu ý giảm tốc\nđộ",
+        "is_valid": true
+      },
+      {
+        "strategy": "A",
+        "chunk_id": "hust-student-handbook-2026_p10_fix_0",
+        "page": 10,
+        "category": "diem_ren_luyen",
+        "source": "data/so_tay_sinh_vien_2026.pdf",
+        "document_id": "hust-student-handbook-2026",
+        "text_preview": "18 19\nĐIỂM RÈN LUYỆN SINH VIÊN\nCÁC MẶT ĐÁNH GIÁ\nCÁCH THỨC VÀ QUY TRÌNH\nPHÂN LOẠI KẾT QUẢ RÈN LUYỆN\nSỬ DỤNG KẾT QUẢ ĐÁNH GIÁ\nTrách nhiệm chấp hành pháp luật và nội\nquy, quy chế của Đại học;\nTrách nhiệm công dân trong quan hệ\ncộng đồng;\nTrách",
+        "is_valid": true
+      },
+      {
+        "strategy": "A",
+        "chunk_id": "hust-student-handbook-2026_p17_fix_0",
+        "page": 17,
+        "category": "hoc_bong_an_sinh",
+        "source": "data/so_tay_sinh_vien_2026.pdf",
+        "document_id": "hust-student-handbook-2026",
+        "text_preview": "32 33\nHỌC BỔNG\nTRẦN ĐẠI NGHĨA\nĐỐI TƯỢNG XÉT CẤP HỌC BỔNG\nMỤC ĐÍCH CỦA HỌC BỔNG\nMỨC HỌC BỔNG\nHọc bổng Trần Đại Nghĩa là Học bổng của ĐHBK Hà Nội xét cấp cho sinh viên có hoàn cảnh kinh\ntế gia đình đặc biệt khó khăn (hộ nghèo, hộ cận nghèo ho",
+        "is_valid": true
+      },
+      {
+        "strategy": "A",
+        "chunk_id": "hust-student-handbook-2026_p2_fix_0",
+        "page": 2,
+        "category": "gioi_thieu_vien_khoa",
+        "source": "data/so_tay_sinh_vien_2026.pdf",
+        "document_id": "hust-student-handbook-2026",
+        "text_preview": "2 3\nNHỮNG ĐIỂM MỐC\nLỊCH SỬ QUAN TRỌNG\n1956\nNgày 6/3/1956, Bộ trưởng Bộ Giáo dục Nguyễn Văn Huyên đã\nký nghị định 147/NĐ về việc thành lập trường Đại học Chuyên\nnghiệp Bách khoa nay là trường ĐHBK Hà Nội.\nNgày 15/10/1956,Trường đã long trọng",
+        "is_valid": true
+      },
+      {
+        "strategy": "A",
+        "chunk_id": "hust-student-handbook-2026_p31_fix_0",
+        "page": 31,
+        "category": "gioi_thieu_vien_khoa",
+        "source": "data/so_tay_sinh_vien_2026.pdf",
+        "document_id": "hust-student-handbook-2026",
+        "text_preview": "60\nTRƯỜNG\nĐIỆN - ĐIỆN TỬ\nSCHOOL OF ELECTRICAL AND ELECTRONICS ENGINEERING\nCÁN BỘ\nGIẢNG VIÊN\nBAN CỐ VẤN\nHỌC TẬP\nBao gồm 4 khoa, 1 trung tâm đào tạo\nthực hành & 1 viện nghiên cứu.\n235 CB giảng viên, trong đó có 3 Giáo sư,\n52 Phó giáo sư, 106 ",
+        "is_valid": true
+      },
+      {
+        "strategy": "B",
+        "chunk_id": "hust-student-handbook-2026_p6_para_0",
+        "page": 6,
+        "category": "quy_che_quy_dinh",
+        "source": "data/so_tay_sinh_vien_2026.pdf",
+        "document_id": "hust-student-handbook-2026",
+        "text_preview": "10 11\n1\nXúc phạm danh dự, nhân phẩm, xâm phạm thân thể nhà giáo, cán\nbộ, người lao động, người học của Đại học và người khác. Gian lận trong học tập, kiểm tra, thi cử như quay cóp, sử dụng\ntài liệu hoặc thiết bị không được phép, sử dụng trá",
+        "is_valid": true
+      },
+      {
+        "strategy": "B",
+        "chunk_id": "hust-student-handbook-2026_p11_para_0",
+        "page": 11,
+        "category": "diem_ren_luyen",
+        "source": "data/so_tay_sinh_vien_2026.pdf",
+        "document_id": "hust-student-handbook-2026",
+        "text_preview": "20 21\nSTT Tiêu chí đánh giá rèn luyện Minh Điểm\nI Tiêu chí điểm cộng (Tối đa 100 điểm)\n\nTC1 Chấp hành pháp luật và nội quy, quy chế của nhà trường (tối đa 25 điểm) 25\n1 Chấp hành các quy định của pháp luật đối với công dân (tối đa 15 điểm):",
+        "is_valid": true
+      },
+      {
+        "strategy": "B",
+        "chunk_id": "hust-student-handbook-2026_p21_para_0",
+        "page": 21,
+        "category": "hoc_bong_an_sinh",
+        "source": "data/so_tay_sinh_vien_2026.pdf",
+        "document_id": "hust-student-handbook-2026",
+        "text_preview": "40 41\nDỰ ÁN AN SINH\nTheo thống kê, có trên 30% sinh viên ĐHBKHN đã từng hoặc có nguyện vọng làm gia\nsư các môn như Toán, Lý, Hóa, Tiếng Anh, Tin\nhọc,.... Nhằm giảm thiểu các chi phí về thời\ngian và tiền bạc cho các bên liên quan, dự án\nAn s",
+        "is_valid": true
+      },
+      {
+        "strategy": "B",
+        "chunk_id": "hust-student-handbook-2026_p35_para_0",
+        "page": 35,
+        "category": "gioi_thieu_vien_khoa",
+        "source": "data/so_tay_sinh_vien_2026.pdf",
+        "document_id": "hust-student-handbook-2026",
+        "text_preview": "68\nKHOA\nNGOẠI NGỮ\nFACULTY OF FOREIGN LANGUAGES\nCÁN BỘ\nGIẢNG VIÊN\nĐội ngũ cán bộ hiện nay gồm 96 cán bộ,\ntrong đó có 03 Tiến sỹ, 08 Nghiên cứu\nsinh, 62 Thạc sỹ, 02 giáo viên nước ngoài,\n20 Giảng viên chính, 13 cán bộ đang tham\ngia các khoá đ",
+        "is_valid": true
+      },
+      {
+        "strategy": "B",
+        "chunk_id": "hust-student-handbook-2026_p52_para_0",
+        "page": 52,
+        "category": "gioi_thieu_vien_khoa",
+        "source": "data/so_tay_sinh_vien_2026.pdf",
+        "document_id": "hust-student-handbook-2026",
+        "text_preview": "102\nHãy cảnh giác với các chiêu lừa\nđảo! Những công việc được sinh viên\nưu tiên chọn lựa\n“\n“\n“\n“\nGần đây có nhiều thông tin về các chiêu lừa\nđảo “việc làm thêm” (thực chất là kinh doanh đa\ncấp) với các mánh khóe mà sinh viên rất dễ bị\nmắc l",
+        "is_valid": true
+      },
+      {
+        "strategy": "C",
+        "chunk_id": "hust-student-handbook-2026_p12_para_0",
+        "page": 12,
+        "category": "quy_che_quy_dinh",
+        "source": "data/so_tay_sinh_vien_2026.pdf",
+        "document_id": "hust-student-handbook-2026",
+        "text_preview": "22\nXỬ LÝ KỶ LUẬT\nTheo Thông tư số 40/2026/TT-BGDĐT, có 4 hình thức xử lý kỷ luật sinh viên gồm:\n\n1. Khiển trách;\n\n2. Cảnh cáo;\n\n3. Đình chỉ học tập có thời hạn;",
+        "is_valid": true
+      },
+      {
+        "strategy": "C",
+        "chunk_id": "hust-student-handbook-2026_p10_para_1",
+        "page": 10,
+        "category": "diem_ren_luyen",
+        "source": "data/so_tay_sinh_vien_2026.pdf",
+        "document_id": "hust-student-handbook-2026",
+        "text_preview": "2. Kết quả đánh giá rèn luyện được sử dụng trong việc xét duyệt học bổng, xét khen thưởng, xét\ntham gia các hoạt động giao lưu, trao đổi sinh viên quốc tế.\n\n3. Kết quả đánh giá rèn luyện toàn khóa học của sinh viên được cấp trong hồ sơ tốt ",
+        "is_valid": true
+      },
+      {
+        "strategy": "C",
+        "chunk_id": "hust-student-handbook-2026_p22_para_0",
+        "page": 22,
+        "category": "hoc_bong_an_sinh",
+        "source": "data/so_tay_sinh_vien_2026.pdf",
+        "document_id": "hust-student-handbook-2026",
+        "text_preview": "42 43\n42\nSinh viên có nguy cơ gặp vấn đề về tâm lý ảnh hưởng bởi kết quả học tập hoặc có kết quả rèn\nluyện kém. Sinh viên có dấu hiệu bệnh lý, hoặc “chủ động” nhờ trợ giúp tâm lý. Phụ huynh và những người liên quan.",
+        "is_valid": true
+      },
+      {
+        "strategy": "C",
+        "chunk_id": "hust-student-handbook-2026_p40_para_0",
+        "page": 40,
+        "category": "gioi_thieu_vien_khoa",
+        "source": "data/so_tay_sinh_vien_2026.pdf",
+        "document_id": "hust-student-handbook-2026",
+        "text_preview": "78\n79\nCÁC MÔN HỌC\nKINH ĐIỂN\nBỡ ngỡ bước vào cánh cổng Trường ĐH Bách khoa Hà Nội, các bạn sẽ được tiếp cận theo cách\nhọc tín chỉ. Sẽ có rất nhiều thắc mắc, nhiều lạ lẫm, và kể cả những sai lầm do thiếu hiểu biết và thiếu\nkinh nghiệm. GIẢI T",
+        "is_valid": true
+      },
+      {
+        "strategy": "C",
+        "chunk_id": "hust-student-handbook-2026_p45_para_0",
+        "page": 45,
+        "category": "gioi_thieu_vien_khoa",
+        "source": "data/so_tay_sinh_vien_2026.pdf",
+        "document_id": "hust-student-handbook-2026",
+        "text_preview": "DANH LAM THẮNG CẢNH VÀ DI TÍCH LỊCH SỬ\n\n1. Bảo tàng dân tộc học\n\n2. Phố đi bộ\n\n3. Hồ Gươm\n\n4. Hồ Tây\n\n5. Lăng Bác\n\n6. Cầu Long Biên\n\n7. Nhà Hát Lớn\n\n8. Văn Miếu\n\n9. Bảo tàng Lịch sử\n\n10. Chùa Trấn Quốc\n\n11. Hoàng Thành Thăng Long\n\n12. Nhà t",
+        "is_valid": true
+      }
+    ],
+    "filter_compliance_tests": [
+      {
+        "query_id": "q06",
+        "split": "dev",
+        "question": "Theo quy định đánh giá rèn luyện, kết quả rèn luyện được sử dụng cho những mục đích nào?",
+        "applied_filter": {
+          "category": "diem_ren_luyen"
+        },
+        "retrieved_top_3_chunk_ids": [
+          "hust-student-handbook-2026_p10_para_1",
+          "hust-student-handbook-2026_p10_para_0",
+          "hust-student-handbook-2026_p10_para_3"
+        ],
+        "retrieved_top_3_categories": [
+          "diem_ren_luyen",
+          "diem_ren_luyen",
+          "diem_ren_luyen"
+        ],
+        "compliance_rate": "3/3 (100%)",
+        "is_domain_isolated": true
+      },
+      {
+        "query_id": "q15",
+        "split": "dev",
+        "question": "Trường Điện - Điện tử gồm bao nhiêu khoa trực thuộc và có bao nhiêu cán bộ giảng viên?",
+        "applied_filter": {
+          "category": "gioi_thieu_vien_khoa"
+        },
+        "retrieved_top_3_chunk_ids": [
+          "hust-student-handbook-2026_p31_para_0",
+          "hust-student-handbook-2026_p31_para_2",
+          "hust-student-handbook-2026_p31_para_1"
+        ],
+        "retrieved_top_3_categories": [
+          "gioi_thieu_vien_khoa",
+          "gioi_thieu_vien_khoa",
+          "gioi_thieu_vien_khoa"
+        ],
+        "compliance_rate": "3/3 (100%)",
+        "is_domain_isolated": true
+      },
+      {
+        "query_id": "q19",
+        "split": "test",
+        "question": "Trong mục học bổng và an sinh xã hội, Học bổng Trần Đại Nghĩa được xét và cấp với tần suất như thế nào?",
+        "applied_filter": {
+          "category": "hoc_bong_an_sinh"
+        },
+        "retrieved_top_3_chunk_ids": [
+          "hust-student-handbook-2026_p17_para_1",
+          "hust-student-handbook-2026_p17_para_0",
+          "hust-student-handbook-2026_p17_para_2"
+        ],
+        "retrieved_top_3_categories": [
+          "hoc_bong_an_sinh",
+          "hoc_bong_an_sinh",
+          "hoc_bong_an_sinh"
+        ],
+        "compliance_rate": "3/3 (100%)",
+        "is_domain_isolated": true
+      }
+    ],
+    "overall_filter_compliance": "9/9 (100%)",
+    "test_filter_compliance": "3/3 (100%)"
+  }
+}

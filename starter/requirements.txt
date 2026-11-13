@@ -1,4 +1,7 @@
-# Core setup and PDF parsing. Choose and install an embedding SDK separately.
+# Core setup, PDF parsing, pgvector store, and Gemini embedding SDK.
 psycopg[binary]==3.3.8
+pgvector>=0.3.0
 pypdf>=5,<7
+fonttools>=4.40.0
 python-dotenv>=1,<2
+google-genai>=1.0.0

@@ -1,8 +1,8 @@
 # Thông tin học viên
 
-- Họ và tên:
-- MSSV:
-- Lớp: L3A / L3B / khác:
-- Chủ đề và corpus:
-- Repo bài nộp:
-- Commit chốt bài:
+- Họ và tên: Nguyễn Hoàng Việt
+- MSSV: 03487
+- Lớp: L3A
+- Chủ đề và corpus: Sổ tay Sinh viên 2026 (55 trang vật lý, 53 trang nội dung hợp lệ)
+- Repo bài nộp: K5-L3A-DAY06-NguyenHoangViet-03487-DataIngestion
+- Commit chốt bài: Complete Day 6 data ingestion lab
