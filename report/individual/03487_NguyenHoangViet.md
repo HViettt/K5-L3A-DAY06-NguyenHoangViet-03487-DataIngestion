@@ -11,7 +11,7 @@
 
 - **Chủ đề, nguồn/quyền, số trang và quy tắc tính trang:**
   - *Chủ đề:* Sổ tay Sinh viên 2026 (Cẩm nang hướng dẫn sinh viên, Đại học Bách khoa Hà Nội).
-  - *Source and usage scope:* HUST Student Affairs portal (`https://ctt.hust.edu.vn/DisplayWeb/DisplayBaiViet.aspx?baiviet=42750`). The source page does not state a standalone redistribution license. For this lab submission, the student reports that the Lab Coach approved sharing the PDF as a GitHub Release asset.
+  - *Source and usage scope:* HUST Student Affairs portal (`https://ctt.hust.edu.vn/DisplayWeb/DisplayBaiViet.aspx?baiviet=42750`). The handbook is publicly available, but the source page does not state an explicit redistribution license; permission to redistribute the full PDF is not specified by the source.
   - *Kế toán số trang:* Tổng cộng 55 trang vật lý. Loại trừ 2 trang: Trang 1 (bìa trước: 35 ký tự thô / 35 ký tự chuẩn hóa) và Trang 4 (mục lục tóm tắt: 293 ký tự thô / 292 ký tự chuẩn hóa) do dưới ngưỡng 300 ký tự.
   - *Quy tắc tính trang:* Tính tất cả các trang có nội dung quy định, điều khoản, hướng dẫn học vụ, quy chế rèn luyện hoặc thông tin giới thiệu đào tạo thực tế có $\ge 300$ ký tự sau chuẩn hóa. Số trang nội dung hợp lệ được tính là **53 trang** (tất cả 53 trang hợp lệ đều đạt từ 615 đến 7.545 ký tự chuẩn hóa, vượt xa mốc tối thiểu $\ge 30$ trang theo quy định). Quy tắc này được code hóa trực tiếp trong `starter/src/ingestion.py` (`len(text) < 300`).
   - *Tổng số ký tự văn bản:* Toàn bộ file PDF gồm 117.465 ký tự thô; tổng số ký tự chuẩn hóa đưa vào chia chunking là **115.455 ký tự**.

@@ -5,7 +5,7 @@
     "source_path": "data/so_tay_sinh_vien_2026.pdf",
     "source_url": "https://ctt.hust.edu.vn",
     "download_page_reference": "https://ctt.hust.edu.vn/DisplayWeb/DisplayBaiViet.aspx?baiviet=42750 (Cổng thông tin Đào tạo và Công tác sinh viên ĐHBK Hà Nội - chuyên mục Sổ tay sinh viên)",
-    "license_or_permission": "The handbook is publicly available on the HUST Student Affairs portal; the source page does not state a standalone redistribution license. For this lab submission, the student reports that the Lab Coach approved sharing the PDF as a GitHub Release asset.",
+    "license_or_permission": "The handbook is publicly available on the HUST Student Affairs portal. The source page does not state an explicit redistribution license; permission to redistribute the full PDF is not specified by the source.",
     "language": "vi",
     "accessed_at": "2026-11-13",
     "version": "2026",
