@@ -6,7 +6,7 @@ Dự án hiện thực trọn vẹn pipeline Data Ingestion Engineering phục v
 
 | 📄 Dữ liệu | 🧩 Chiến lược | 🎯 Benchmark |
 |---|---|---|
-| **53 trang nội dung hợp lệ** ($\ge 300$ ký tự) | **3 configurations under comparison** (A, B, C; C reuses B chunks and adds a metadata filter) | **20 câu hỏi** (15 dev / 5 test) |
+| **53 trang nội dung hợp lệ** ($\ge 300$ ký tự) | **3 cấu hình so sánh** (A, B, C; C dùng lại chunks của B và thêm metadata filter) | **20 câu hỏi** (15 dev / 5 test) |
 
 ## Bắt đầu nhanh
 
